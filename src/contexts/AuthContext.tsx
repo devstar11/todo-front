@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { auth } from '@/services/api';
 import { jwtDecode } from 'jwt-decode';
@@ -26,7 +26,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const checkTokenExpiration = () => {
+  const checkTokenExpiration = useCallback(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       setIsAuthenticated(false);
@@ -61,7 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         router.push('/login');
       }
     }
-  };
+  });
 
   useEffect(() => {
     checkTokenExpiration();

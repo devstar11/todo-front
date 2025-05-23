@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, use } from 'react';
+import { useEffect, useState, use, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
@@ -25,7 +25,7 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
   const [editedNote, setEditedNote] = useState({ title: '', content: '' });
   const [error, setError] = useState('');
 
-  const fetchNote = async () => {
+  const fetchNote = useCallback(async () => {
     try {
       const data = await notes.getOne(id);
       setNote(data);
@@ -34,8 +34,8 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
       console.error('Error fetching note:', error);
       router.push('/notes');
     }
-  };
-  
+  });
+
   useEffect(() => {
     if (!isAuthenticated) {
       router.push('/login');

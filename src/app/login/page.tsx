@@ -84,7 +84,7 @@ export default function LoginPage() {
             </Button>
             <Box sx={{ mt: 2, textAlign: 'center' }}>
               <Typography variant="body2">
-                Don't have an account?&nbsp
+                Don&apos;t have an account?{' '}
                 <Link component={NextLink} href="/register">
                   Register here
                 </Link>
