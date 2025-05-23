@@ -38,7 +38,7 @@ export default function LoginPage() {
   const onSubmit = async (data: FormData) => {
     try {
       await login(data.username, data.password);
-    } catch (err) {
+    } catch {
       setError('Invalid credentials');
     }
   };
@@ -84,7 +84,7 @@ export default function LoginPage() {
             </Button>
             <Box sx={{ mt: 2, textAlign: 'center' }}>
               <Typography variant="body2">
-                Don't have an account?{' '}
+                Don't have an account?&nbsp
                 <Link component={NextLink} href="/register">
                   Register here
                 </Link>

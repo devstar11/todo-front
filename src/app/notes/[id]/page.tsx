@@ -25,14 +25,6 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
   const [editedNote, setEditedNote] = useState({ title: '', content: '' });
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
-    fetchNote();
-  }, [isAuthenticated, router, id]);
-
   const fetchNote = async () => {
     try {
       const data = await notes.getOne(id);
@@ -43,6 +35,15 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
       router.push('/notes');
     }
   };
+  
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/login');
+      return;
+    }
+    fetchNote();
+  }, [isAuthenticated, router, id, fetchNote]);
+
 
   const handleSave = async () => {
     if (!editedNote.title.trim()) {

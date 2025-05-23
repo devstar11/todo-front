@@ -41,7 +41,7 @@ export default function RegisterPage() {
   const onSubmit = async (data: FormData) => {
     try {
       await registerUser(data.username, data.password);
-    } catch (err) {
+    } catch {
       setError('Registration failed. Username might be taken.');
     }
   };

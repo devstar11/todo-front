@@ -53,7 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           router.push('/notes');
         }
       }
-    } catch (error) {
+    } catch {
       // Invalid token
       localStorage.removeItem('token');
       setIsAuthenticated(false);
@@ -68,7 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Check token expiration every minute
     const interval = setInterval(checkTokenExpiration, 60000);
     return () => clearInterval(interval);
-  }, [pathname]);
+  }, [pathname, checkTokenExpiration]);
 
   const login = async (username: string, password: string) => {
     try {
