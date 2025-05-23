@@ -61,7 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         router.push('/login');
       }
     }
-  });
+  }, [pathname, router]);
 
   useEffect(() => {
     checkTokenExpiration();

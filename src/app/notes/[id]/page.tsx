@@ -34,7 +34,7 @@ export default function NoteDetailPage({ params }: { params: Promise<{ id: strin
       console.error('Error fetching note:', error);
       router.push('/notes');
     }
-  });
+  }, [id, router]);
 
   useEffect(() => {
     if (!isAuthenticated) {
