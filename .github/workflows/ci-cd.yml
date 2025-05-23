@@ -19,8 +19,13 @@ jobs:
           cache: 'npm'
           
       - name: Install Dependencies
-        run: npm ci
-        
+        run: |
+          npm cache clean --force
+          rm -rf node_modules
+          rm -f package-lock.json
+          npm install
+          npm ci
+          
       - name: Run Tests
         run: npm test
         
@@ -38,8 +43,13 @@ jobs:
           cache: 'npm'
           
       - name: Install Dependencies
-        run: npm ci
-        
+        run: |
+          npm cache clean --force
+          rm -rf node_modules
+          rm -f package-lock.json
+          npm install
+          npm ci
+          
       - name: Build
         run: npm run build
         
